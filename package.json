@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "format": "find -name '*.js' -not -path './node_modules/*' | xargs prettier --write"
+    "format": "find -name '*.js' -not -path './node_modules/*' | xargs prettier --write",
+    "test": "mocha --recursive --exit tests/"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
@@ -16,7 +17,9 @@
     "sequelize": "^4.39.0"
   },
   "devDependencies": {
+    "mocha": "^5.2.0",
     "nodemon": "^1.18.4",
-    "prettier": "^1.14.3"
+    "prettier": "^1.14.3",
+    "supertest": "^3.3.0"
   }
 }

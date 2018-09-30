@@ -3,9 +3,9 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 
-const indexRouter = require("./routes/index");
-const usersRouter = require("./routes/users");
-const foodComputersRouter = require("./routes/foodComputers");
+const indexRouter = require("./controllers/index");
+const usersRouter = require("./controllers/users");
+const foodComputersRouter = require("./controllers/foodComputers");
 
 const app = express();
 
@@ -17,6 +17,6 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use("/foodComputers", foodComputersRouter);
+app.use("/food-computers", foodComputersRouter);
 
 module.exports = app;

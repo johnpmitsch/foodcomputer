@@ -1,7 +1,5 @@
-"use strict";
-
 module.exports = {
-  up: (queryInterface, Sequelize) => {
+  up: (queryInterface, _Sequelize) => {
     const names = ["mars computer", "venus computer", "moon computer"];
     const nameList = [];
     names.map(name => {
@@ -14,7 +12,6 @@ module.exports = {
     return queryInterface.bulkInsert("FoodComputers", nameList, {});
   },
 
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete("FoodComputers", null, {});
-  }
+  down: (queryInterface, _Sequelize) =>
+    queryInterface.bulkDelete("FoodComputers", null, {})
 };

@@ -5,7 +5,9 @@
   "scripts": {
     "start": "nodemon ./bin/www",
     "format": "find -name '*.js' -not -path './node_modules/*' | xargs prettier --write",
-    "test": "NODE_ENV=test mocha --recursive --exit tests/"
+    "lint": "./node_modules/.bin/eslint .",
+    "test": "NODE_ENV=test mocha --recursive --exit tests/",
+    "clean": "npm run format && npm run lint"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
@@ -17,6 +19,13 @@
     "sequelize": "^4.39.0"
   },
   "devDependencies": {
+    "eslint": "^5.6.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-prettier": "^2.7.0",
+    "eslint-plugin-react": "^7.11.1",
     "mocha": "^5.2.0",
     "nodemon": "^1.18.4",
     "prettier": "^1.14.3",

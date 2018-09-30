@@ -1,7 +1,10 @@
 const request = require("supertest");
-const app = require("../../../app.js");
 const assert = require("assert");
-const FoodComputer = require("../../../models").FoodComputer;
+const models = require("../../../models");
+
+const app = require("../../../app.js");
+
+const { FoodComputer } = models;
 
 afterEach(done => {
   FoodComputer.destroy({ where: {} })

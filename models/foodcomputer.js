@@ -1,4 +1,3 @@
-"use strict";
 module.exports = (sequelize, DataTypes) => {
   const FoodComputer = sequelize.define(
     "FoodComputer",
@@ -7,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       classMethods: {
-        associate: function(models) {
+        associate(_models) {
           // associations can be defined here
         }
       }

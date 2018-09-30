@@ -5,7 +5,7 @@
   "scripts": {
     "start": "nodemon ./bin/www",
     "format": "find -name '*.js' -not -path './node_modules/*' | xargs prettier --write",
-    "test": "mocha --recursive --exit tests/"
+    "test": "NODE_ENV=test mocha --recursive --exit tests/"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",

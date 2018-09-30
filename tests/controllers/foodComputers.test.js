@@ -1,6 +1,13 @@
 const request = require("supertest");
 const app = require("../../app.js");
 const assert = require("assert");
+const FoodComputer = require("../../models").FoodComputer;
+
+afterEach(done => {
+  FoodComputer.destroy({ where: {} })
+    .then(() => done())
+    .catch(err => err);
+});
 
 describe("GET /foodComputers", () => {
   it("respond with json", done => {

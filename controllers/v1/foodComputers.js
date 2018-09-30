@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const FoodComputer = require("../models").FoodComputer;
+const FoodComputer = require("../../models").FoodComputer;
 
 router.get("/", (req, res, next) => {
   return FoodComputer.findAll({})

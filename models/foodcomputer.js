@@ -6,8 +6,13 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       classMethods: {
-        associate(_models) {
-          // associations can be defined here
+        associate(models) {
+          models.FoodComputer.belongsTo(models.User, {
+            onDelete: "CASCADE",
+            foreignKey: {
+              allowNull: false
+            }
+          });
         }
       }
     }

@@ -1,7 +1,6 @@
 const request = require("supertest");
 const assert = require("assert");
 const models = require("../../../models");
-
 const app = require("../../../app.js");
 
 const { FoodComputer } = models;

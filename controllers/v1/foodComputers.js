@@ -1,20 +1,22 @@
 const express = require("express");
 const { FoodComputer } = require("../../models");
+const { errorMessage } = require("../../controllers/helpers");
 
 const router = express.Router();
 
-router.get("/", (_req, res, _next) =>
-  FoodComputer.findAll({})
-    .then(foodComputers => res.status(200).send(foodComputers))
-    .catch(error => res.status(400).send(error))
-);
+router.get("/", (req, res, _next) => {
+  FoodComputer.findAll({ where: { userId: req.userId } })
+    .then(foodComputers => res.status(200).send({ foodComputers }))
+    .catch(error => res.status(400).send(errorMessage(error)));
+});
 
-router.post("/", (req, res, _next) =>
+router.post("/", (req, res, _next) => {
   FoodComputer.create({
-    name: req.body.name
+    name: req.body.name,
+    userId: req.userId
   })
-    .then(user => res.status(201).send(foodComputer))
-    .catch(error => res.status(400).send(error))
-);
+    .then(foodComputer => res.status(201).send(foodComputer))
+    .catch(error => res.status(400).send(errorMessage(error)));
+});
 
 module.exports = router;

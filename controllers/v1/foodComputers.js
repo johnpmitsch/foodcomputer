@@ -1,9 +1,7 @@
 const express = require("express");
+const { FoodComputer } = require("../../models");
 
 const router = express.Router();
-const models = require("../../models");
-
-const { FoodComputer } = models;
 
 router.get("/", (_req, res, _next) =>
   FoodComputer.findAll({})
@@ -15,7 +13,7 @@ router.post("/", (req, res, _next) =>
   FoodComputer.create({
     name: req.body.name
   })
-    .then(foodComputer => res.status(201).send(foodComputer))
+    .then(user => res.status(201).send(foodComputer))
     .catch(error => res.status(400).send(error))
 );
 

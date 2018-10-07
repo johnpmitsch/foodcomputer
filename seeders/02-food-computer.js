@@ -6,12 +6,13 @@ module.exports = {
       nameList.push({
         name,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        userId: 1
       });
     });
-    return queryInterface.bulkInsert("FoodComputers", nameList, {});
+    return queryInterface.bulkInsert("FoodComputers", nameList);
   },
-
-  down: (queryInterface, _Sequelize) =>
-    queryInterface.bulkDelete("FoodComputers", null, {})
+  down: (queryInterface, _Sequelize) => {
+    queryInterface.bulkDelete("FoodComputers", null, {});
+  }
 };

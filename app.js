@@ -17,7 +17,7 @@ routesOne.map(definition => {
   const { route, controller } = definition;
   const fullRoute = namespaceOne + route;
   app.use(fullRoute, controller);
-  return true;
+  return null;
 });
 
 module.exports = app;

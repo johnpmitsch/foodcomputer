@@ -2,7 +2,8 @@ module.exports = (sequelize, DataTypes) => {
   const FoodComputer = sequelize.define(
     "FoodComputer",
     {
-      name: DataTypes.STRING
+      name: DataTypes.STRING,
+      userId: DataTypes.INTEGER
     },
     {
       classMethods: {

@@ -3,6 +3,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const routesOne = require("./routes/v1");
+const errorHandler = require("./middleware/errorHandler");
 
 const app = express();
 
@@ -19,5 +20,8 @@ routesOne.map(definition => {
   app.use(fullRoute, controller);
   return null;
 });
+
+// Keep error handler middleware last
+app.use(errorHandler);
 
 module.exports = app;

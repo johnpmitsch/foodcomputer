@@ -1,20 +1,19 @@
 const express = require("express");
-const { errorMessage } = require("../../controllers/helpers");
 const { User } = require("../../models");
 const foodComputers = require("./foodComputers");
 
 const router = express.Router();
 
-router.get("/:userId", (req, res, _next) => {
+router.get("/:userId", (req, res, next) => {
   User.findById(req.params.userId)
     .then(user => {
       if (user) {
         res.status(200).send(user);
       } else {
-        res.status(404).send(errorMessage("User not found"));
+        next("User not found");
       }
     })
-    .catch(error => res.status(400).send(errorMessage(error)));
+    .catch(error => next(error));
 });
 
 router.use("/:userId/food-computers", foodComputers);

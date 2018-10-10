@@ -15,7 +15,7 @@ router.get("/:foodComputerId", (req, res, next) => {
       if (foodComputer) {
         res.status(200).send(foodComputer);
       } else {
-        next({ message: "Food Computer not found" });
+        next({ statusCode: 404, message: "Food Computer not found" });
       }
     })
     .catch(error => next(error));

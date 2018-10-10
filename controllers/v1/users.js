@@ -10,7 +10,7 @@ router.get("/:userId", (req, res, next) => {
       if (user) {
         res.status(200).send(user);
       } else {
-        next("User not found");
+        next({ statusCode: 404, message: "User not found" });
       }
     })
     .catch(error => next(error));

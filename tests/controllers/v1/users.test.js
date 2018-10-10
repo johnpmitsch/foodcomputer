@@ -34,10 +34,10 @@ describe("GET a specific user", () => {
     request(app)
       .get("/api/v1/users/0")
       .set("Accept", "application/json")
-      .expect("Content-Type", /json/)
       .expect(res => {
-        res.body.errors.includes("User not found");
+        assert.equal(res.body.error, "User not found");
       })
+      .expect("Content-Type", /json/)
       .expect(404, done);
   });
 });

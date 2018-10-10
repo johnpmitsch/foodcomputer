@@ -17,13 +17,6 @@ router.get("/:userId", (req, res, _next) => {
     .catch(error => res.status(400).send(errorMessage(error)));
 });
 
-router.use(
-  "/:userId/food-computers",
-  (req, _res, next) => {
-    req.userId = req.params.userId;
-    next();
-  },
-  foodComputers
-);
+router.use("/:userId/food-computers", foodComputers);
 
 module.exports = router;

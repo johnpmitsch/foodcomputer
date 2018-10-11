@@ -59,6 +59,16 @@ describe("Create a food computer", () => {
       })
       .expect(201, done);
   });
+
+  it("Shouldn't allow duplicate names per user", done => {
+    request(app)
+      .post(`/api/v1/users/${testUser.id}/food-computers`)
+      .send({ name: testFoodComputer.name })
+      .expect(response => {
+        assert(response.body.errors.includes("name must be unique"));
+      })
+      .expect(400, done);
+  });
 });
 
 describe("Get a single food computer", () => {
@@ -71,5 +81,16 @@ describe("Get a single food computer", () => {
         assert(res.body.name);
       })
       .expect(200, done);
+  });
+
+  it("returns 404 when food comp doesn't exist", done => {
+    request(app)
+      .get(`/api/v1/users/${testUser.id}/food-computers/0`)
+      .set("Accept", "application/json")
+      .expect("Content-Type", /json/)
+      .expect(res => {
+        assert(res.body.errors.includes("Food Computer not found"));
+      })
+      .expect(404, done);
   });
 });

@@ -35,7 +35,7 @@ describe("GET a specific user", () => {
       .get("/api/v1/users/0")
       .set("Accept", "application/json")
       .expect(res => {
-        assert.equal(res.body.error, "User not found");
+        assert(res.body.errors.includes("User not found"));
       })
       .expect("Content-Type", /json/)
       .expect(404, done);

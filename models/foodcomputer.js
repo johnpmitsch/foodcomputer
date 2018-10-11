@@ -6,6 +6,12 @@ module.exports = (sequelize, DataTypes) => {
       userId: DataTypes.INTEGER
     },
     {
+      indexes: [
+        {
+          fields: ["name", "userId"],
+          unique: true
+        }
+      ],
       classMethods: {
         associate(models) {
           models.FoodComputer.belongsTo(models.User, {

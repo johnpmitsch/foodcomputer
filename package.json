@@ -8,7 +8,8 @@
     "lint": "./node_modules/.bin/eslint .",
     "test": "NODE_ENV=test mocha --recursive --exit tests/",
     "clean": "npm run format && npm run lint",
-    "setupTests": "NODE_ENV=test sequelize db:drop && NODE_ENV=test sequelize db:create && NODE_ENV=test sequelize db:migrate"
+    "resetDatabase": "sequelize db:drop; sequelize db:create && sequelize db:migrate && sequelize db:seed",
+    "resetTestDatabase": "NODE_ENV=test sequelize db:drop; NODE_ENV=test sequelize db:create && NODE_ENV=test sequelize db:migrate"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",

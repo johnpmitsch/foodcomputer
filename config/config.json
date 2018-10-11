@@ -4,7 +4,8 @@
     "password": "foodcomputer",
     "database": "foodcomputer_development",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "operatorsAliases": false
   },
   "test": {
     "username": "foodcomputer",
@@ -12,13 +13,15 @@
     "database": "foodcomputer_test",
     "host": "127.0.0.1",
     "dialect": "postgres",
-    "logging": false
+    "logging": false,
+    "operatorsAliases": false
   },
   "production": {
     "username": "foodcomputer",
     "password": "foodcomputer",
     "database": "foodcomputer_production",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "operatorsAliases": false
   }
 }

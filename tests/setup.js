@@ -1,11 +1,11 @@
 const { FoodComputer, User } = require("../models");
 
-const setupUser = () =>
+const setupUser = (password = "mysecurepassword") =>
   new Promise((resolve, reject) => {
     User.create({
       email: "test@test.com",
-      password: "mysecurepassword",
-      username: "FCfan101"
+      username: "FCfan101",
+      password
     })
       .then(user => {
         FoodComputer.create({

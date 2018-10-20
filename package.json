@@ -8,14 +8,18 @@
     "lint": "./node_modules/.bin/eslint .",
     "test": "NODE_ENV=test mocha --recursive --exit tests/",
     "clean": "npm run format && npm run lint",
-    "resetDatabase": "sequelize db:drop; sequelize db:create && sequelize db:migrate && sequelize db:seed",
+    "resetDatabase": "sequelize db:drop; sequelize db:create && sequelize db:migrate && sequelize db:seed:all --debug",
     "resetTestDatabase": "NODE_ENV=test sequelize db:drop; NODE_ENV=test sequelize db:create && NODE_ENV=test sequelize db:migrate"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
+    "jsonwebtoken": "^8.3.0",
     "morgan": "~1.9.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "pg": "^7.4.3",
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.39.0"

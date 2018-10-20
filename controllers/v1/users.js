@@ -5,7 +5,12 @@ const foodComputers = require("./foodComputers");
 const router = express.Router();
 
 router.get("/:userId", (req, res, next) => {
-  User.findById(req.params.userId)
+  User.findOne({
+    where: { id: req.params.userId },
+    attributes: {
+      exclude: ["password"]
+    }
+  })
     .then(user => {
       if (user) {
         res.status(200).send(user);

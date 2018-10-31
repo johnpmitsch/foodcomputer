@@ -1,18 +1,19 @@
 const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
-const logger = require("morgan");
+const morgan = require("morgan");
 const passport = require("passport");
 const { Strategy } = require("passport-local");
 const jwt = require("jsonwebtoken");
 const routesOne = require("./routes/v1");
 const errorHandler = require("./middleware/errorHandler");
 const { User } = require("./models");
+const winston = require("./config/winston");
 
 const app = express();
 const env = process.env.NODE_ENV || "development";
 
-app.use(logger("dev"));
+app.use(morgan("combined", { stream: winston.stream }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -37,7 +38,7 @@ passport.use(
           jwt.sign(
             { id: user.id, email: user.email },
             jwtSecretKey,
-            { expiresIn: "7d" },
+            { expiresIn: "14d" },
             (err, token) => {
               if (err) return done(err);
               return user.validPassword(password)

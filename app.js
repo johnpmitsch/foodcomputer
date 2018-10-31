@@ -21,16 +21,16 @@ passport.use(
     {
       usernameField: "email"
     },
-    (email, password, cb) => {
+    (email, password, done) => {
       User.findOne({ where: { email } })
         .then(user => {
-          if (!user) return cb(null, false);
-          return user.validatePassword(user.password)
-            ? cb(null, user)
-            : cb(null, false);
+          if (!user) return done(null, false, "User not found");
+          return user.validPassword(password)
+            ? done(null, user)
+            : done(null, false, "Password is incorrect");
         })
         .catch(err => {
-          if (err) return cb(err);
+          if (err) return done(err);
           return false;
         });
     }

@@ -22,6 +22,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
+  User.prototype.validPassword = function validPassword(password) {
+    return bcrypt.compareSync(password, this.password);
+  };
+
   User.hook("beforeCreate", "beforeBulkCreate", (user, _options) =>
     bcrypt
       .hash(user.password, 10)
@@ -33,10 +37,6 @@ module.exports = (sequelize, DataTypes) => {
         throw new Error(err);
       })
   );
-
-  User.prototype.validPassword = function validPassword(password) {
-    return bcrypt.compareSync(password, this.password);
-  };
 
   return User;
 };

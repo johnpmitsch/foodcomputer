@@ -20,12 +20,15 @@ afterEach(done => {
 });
 
 describe("User can log in", () => {
-  it("completes successfully on correct login request", done => {
+  it("completes successfully on correct login request and returns token", done => {
     request(app)
       .post("/api/v1/login")
       .send({ email: userEmail, password: userPassword })
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
+      .expect(res => {
+        assert(res.body.token);
+      })
       .expect(200, done);
   });
 

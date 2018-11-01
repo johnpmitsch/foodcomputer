@@ -39,7 +39,7 @@ describe("User can log in", () => {
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
       .expect(res => {
-        assert.strictEqual(res.body.error, "Password is incorrect");
+        assert(res.body.errors.includes("Password is incorrect"));
       })
       .expect(400, done);
   });
@@ -51,7 +51,8 @@ describe("User can log in", () => {
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
       .expect(res => {
-        assert.strictEqual(res.body.error, "User not found");
+        assert(res.body.errors.includes("User not found"));
+        assert.strictEqual(res.body.error);
       })
       .expect(400, done);
   });

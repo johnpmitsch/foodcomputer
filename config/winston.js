@@ -6,7 +6,7 @@ const env = process.env.NODE_ENV || "development";
 
 const options = {
   file: {
-    level: process.env.LOG_LEVEL || "info",
+    level: process.env.LOG_LEVEL || "debug",
     filename: `${appRoot}/logs/${env}.log`,
     handleExceptions: true,
     json: true,
@@ -15,7 +15,7 @@ const options = {
     colorize: false
   },
   console: {
-    level: "debug",
+    level: process.env.LOG_LEVEL || "info",
     handleExceptions: true,
     json: false,
     colorize: true

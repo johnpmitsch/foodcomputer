@@ -1,4 +1,6 @@
+const jwt = require("jsonwebtoken");
 const { FoodComputer, User } = require("../models");
+const secretKey = require("../config/jwt");
 
 const setupUser = (password = "mysecurepassword") =>
   new Promise((resolve, reject) => {
@@ -8,12 +10,23 @@ const setupUser = (password = "mysecurepassword") =>
       password
     })
       .then(user => {
-        FoodComputer.create({
-          userId: user.id,
-          name: "Lettuce Grower 3000"
-        }).then(foodComputer => {
-          resolve({ user, foodComputer });
-        });
+        let jwtToken;
+        jwt.sign(
+          { id: user.id, email: user.email },
+          secretKey,
+          { expiresIn: "14d" },
+          (err, token) => {
+            if (err) reject(err);
+            jwtToken = token;
+
+            FoodComputer.create({
+              userId: user.id,
+              name: "Lettuce Grower 3000"
+            })
+              .then(foodComputer => resolve({ jwtToken, user, foodComputer }))
+              .catch(error => reject(error));
+          }
+        );
       })
       .catch(err => reject(err));
   });

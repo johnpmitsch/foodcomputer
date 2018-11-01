@@ -5,13 +5,19 @@ const { User } = require("../../../models");
 const { setupUser, destroyUsers } = require("../../setup");
 
 let userId;
+let token;
 const userPassword = "somesafepassword";
 
 beforeEach(done => {
-  setupUser(userPassword).then(({ user: { id } }) => {
-    userId = id;
-    done();
-  });
+  setupUser(userPassword)
+    .then(({ user: { id }, jwtToken }) => {
+      userId = id;
+      token = jwtToken;
+      done();
+    })
+    .catch(err => {
+      throw err;
+    });
 });
 
 afterEach(done => {
@@ -20,16 +26,12 @@ afterEach(done => {
     .catch(err => err);
 });
 
-// describe("Create a user", () => {
-//  it("creates a user successfully", done => {
-//  }
-// });
-
 describe("GET a specific user", () => {
   it("respond with json", done => {
     request(app)
-      .get(`/api/v1/users/${userId}`)
+      .get("/api/v1/users/")
       .set("Accept", "application/json")
+      .set("Authorization", `bearer ${token}`)
       .expect("Content-Type", /json/)
       .expect(res => {
         assert(res.body.email);
@@ -48,14 +50,10 @@ describe("GET a specific user", () => {
       .expect(200, done);
   });
 
-  it("returns user not found", done => {
+  it("responds with bad request with no token", done => {
     request(app)
-      .get("/api/v1/users/0")
+      .get("/api/v1/users/")
       .set("Accept", "application/json")
-      .expect(res => {
-        assert(res.body.errors.includes("User not found"));
-      })
-      .expect("Content-Type", /json/)
-      .expect(404, done);
+      .expect(400, done);
   });
 });

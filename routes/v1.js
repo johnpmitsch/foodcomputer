@@ -4,6 +4,6 @@ const authenticationRouter = require("../controllers/v1/authentication");
 
 module.exports = [
   { route: "", controller: indexRouter },
-  { route: "users", controller: usersRouter },
+  { route: "users", controller: usersRouter, protected: true },
   { route: "", controller: authenticationRouter }
 ];

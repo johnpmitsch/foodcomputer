@@ -1,24 +1,18 @@
 const express = require("express");
-const { User } = require("../../models");
+const passport = require("passport");
 const foodComputers = require("./foodComputers");
 
 const router = express.Router();
 
-router.get("/:userId", (req, res, next) => {
-  User.findOne({
-    where: { id: req.params.userId },
-    attributes: {
-      exclude: ["password"]
+router.get("/", (req, res, next) => {
+  passport.authenticate("jwt", { session: false }, (err, user, message) => {
+    if (message) return next({ statusCode: 400, message });
+    if (err) return next({ statusCode: 500, message: err });
+    if (user) {
+      return res.status(200).send(user);
     }
-  })
-    .then(user => {
-      if (user) {
-        res.status(200).send(user);
-      } else {
-        next({ statusCode: 404, message: "User not found" });
-      }
-    })
-    .catch(error => next(error));
+    return next({ statusCode: 404, message: "User not found" });
+  })(req, res);
 });
 
 router.use("/:userId/food-computers", foodComputers);

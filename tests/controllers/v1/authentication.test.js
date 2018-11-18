@@ -7,10 +7,14 @@ let userEmail;
 const userPassword = "testtesttest";
 
 beforeEach(done => {
-  setupUser(userPassword).then(({ user: { email } }) => {
-    userEmail = email;
-    done();
-  });
+  setupUser(userPassword)
+    .then(({ user: { email } }) => {
+      userEmail = email;
+      done();
+    })
+    .catch(err => {
+      throw Error(err);
+    });
 });
 
 afterEach(done => {

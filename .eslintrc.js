@@ -6,7 +6,7 @@ module.exports = {
   },
   extends: ["airbnb", "plugin:prettier/recommended"],
   parserOptions: {
-    ecmaVersion: 2016,
+    ecmaVersion: 2017,
     sourceType: "module"
   },
   rules: {
@@ -18,6 +18,7 @@ module.exports = {
       "error",
       { args: "after-used", argsIgnorePattern: "^_" }
     ],
-    "array-callback-return": "off"
+    "array-callback-return": "off",
+    "one-var": [2, { initialized: "never" }],
   }
 };

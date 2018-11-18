@@ -13,7 +13,9 @@ beforeEach(done => {
       testUser = user;
       done();
     })
-    .catch(err => err);
+    .catch(err => {
+      throw Error(err);
+    });
 });
 
 afterEach(done => {
@@ -60,7 +62,7 @@ describe("Create a food computer", () => {
       .expect(201, done);
   });
 
-  it("Shouldn't allow duplicate names per user", done => {
+  it("Shouldn't allow duplicate computers per user", done => {
     request(app)
       .post(`/api/v1/users/${testUser.id}/food-computers`)
       .send({ name: testFoodComputer.name })

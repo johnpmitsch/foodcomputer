@@ -16,14 +16,16 @@ beforeEach(done => {
       done();
     })
     .catch(err => {
-      throw err;
+      throw Error(err);
     });
 });
 
 afterEach(done => {
   destroyUsers()
     .then(() => done())
-    .catch(err => err);
+    .catch(err => {
+      throw Error(err);
+    });
 });
 
 describe("GET a specific user", () => {

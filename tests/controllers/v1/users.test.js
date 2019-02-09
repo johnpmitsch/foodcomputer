@@ -39,7 +39,7 @@ describe("GET a specific user", () => {
         assert(res.body.email);
         // Don't want to return password to client
         assert.strictEqual(res.body.password, undefined);
-        User.findById(userId)
+        User.findByPk(userId)
           .then(user => {
             assert(user);
             // hashed password and plain text password match

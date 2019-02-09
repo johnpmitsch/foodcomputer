@@ -19,6 +19,6 @@ module.exports = {
       { args: "after-used", argsIgnorePattern: "^_" }
     ],
     "array-callback-return": "off",
-    "one-var": [2, { initialized: "never" }],
+    "one-var": [2, { initialized: "never" }]
   }
 };

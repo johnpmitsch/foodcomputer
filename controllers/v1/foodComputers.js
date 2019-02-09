@@ -10,7 +10,7 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/:foodComputerId", (req, res, next) => {
-  FoodComputer.findById(req.params.foodComputerId)
+  FoodComputer.findByPk(req.params.foodComputerId)
     .then(foodComputer => {
       if (foodComputer) {
         res.status(200).send(foodComputer);

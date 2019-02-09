@@ -28,9 +28,8 @@ async function setupUser(password = "mysecurepassword") {
   } catch (e) {
     error = e;
   }
-  return new Promise(
-    (resolve, reject) =>
-      error ? reject(Error(error)) : resolve({ jwtToken, user, foodComputer })
+  return new Promise((resolve, reject) =>
+    error ? reject(Error(error)) : resolve({ jwtToken, user, foodComputer })
   );
 }
 

@@ -1,5 +1,5 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => {
+  up: (queryInterface, Sequelize) =>
     queryInterface
       .createTable(
         "FoodComputers",
@@ -45,8 +45,7 @@ module.exports = {
           unique: true
         });
       })
-      .catch(err => err);
-  },
+      .catch(err => err),
   down: (queryInterface, _Sequelize) =>
     queryInterface.dropTable("FoodComputers")
 };

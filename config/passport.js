@@ -49,8 +49,8 @@ passport.use(
         exclude: ["password"]
       }
     })
-      .then(
-        user => (user ? done(null, user) : done(null, false, "User not found"))
+      .then(user =>
+        user ? done(null, user) : done(null, false, "User not found")
       )
       .catch(err => {
         done(err, false);

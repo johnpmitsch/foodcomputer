@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.get("/", (req, res, next) => {
   passport.authenticate("jwt", { session: false }, (err, user, message) => {
+    console.log(message);
     if (message) return next({ statusCode: 400, message });
     if (err) return next({ statusCode: 500, message: err });
     if (user) {

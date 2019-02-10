@@ -3,11 +3,16 @@ const { Strategy } = require("passport-local");
 const jwt = require("jsonwebtoken");
 const { Strategy: JwtStrategy, ExtractJwt } = require("passport-jwt");
 const { User } = require("../models");
-const secretKey = require("./jwt");
 
-const jwtOptions = {};
-jwtOptions.secretOrKey = secretKey;
-jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+// Load ENV variables
+require("dotenv").config();
+
+const secretKey = process.env.JWT_SECRET_KEY;
+
+const jwtOptions = {
+  secretOrKey: secretKey,
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
+};
 
 passport.use(
   new Strategy(

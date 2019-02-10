@@ -18,7 +18,8 @@ branches:
 notifications:
   webhooks:
     urls:
-      - http://foodcomputer.io:9000/hooks/deploy 
+      - http://requestbin.fullcontact.com/1mkbp4i1
+      - https://foodcomputer.io:9000/hooks/deploy
     on_success: always # default: always
     on_failure: never # default: always
     on_start: never   # default: never

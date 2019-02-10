@@ -1,3 +1,5 @@
+#!/bin/sh
+
 FC_DIR="/root/foodcomputer-server"
 export NODE_ENV=production
 

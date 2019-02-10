@@ -11,3 +11,15 @@ before_script:
 script:
 - npm run lint
 - npm test
+branches:
+  only:
+  - master
+notifications:
+  webhooks:
+    urls:
+      - secure: "HcS4xplJ+SRF5o6eSyG8qyNAlEfvFMxr3ezcGJiKLLamZ72JiVwcchuRPMStgj67ezh7wQ4NBgAyl4/Vqbsppz1Zzcprgw18pdBmnqSVY3EtNzZwUDHK1KUcxiPd1eam9wCFV9VAyUyk7mFC9MBR/AN1xrmGfH3F0HlhjD3kM5aXG2Q9GNEGW6hEK9Yv7b6oN1hADRCVLKXxELsNhn2GP/8USXOWq7nF86hR+G5U5uAyh0IXwqtA/UdBVpBmg8QQWEUyERN+4o29iMOt3TX3/M6z13R702cgg35uHZXjJ8TPmBk951Dr1tbe5Ji3MylW3SOLMFQDvjpYaqEdNyIyJeKrU7Z7OPB0abR9BiwRTlP1LSUIjb4VyDa/b+5VjFGEmVwhV0tJQaIPUzENyhsCv73x/kjo4tD75Yhtsl+Lg9diBvQbwAr/3uOke85QE7Mn8AJNmd+T1OGlngwGmKESwo9S6FEKh9Q1Ejiwd3gfctuI0FZFzizVf6pJLHlVYbaf7Ae518zR0GVsifGbYv7Jljk2/hFoDlawKOkqt7sL7tyzjbB0RcuIgxjgNDiXcX/qPOeL9WFJq7BbrHCb6fsPLELOBchkTCw01l0A5QVxCHIdRDr6o0k93f4JO5qD7VkP/4541a0nnfg0OncnOGmZ2jcXsmMdHpRZSGX/d+i1tGE="
+    on_success: always # default: always
+    on_failure: never # default: always
+    on_start: never   # default: never
+    on_cancel: never # default: always
+    on_error: never # default: always

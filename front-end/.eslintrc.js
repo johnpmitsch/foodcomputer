@@ -3,5 +3,10 @@ module.exports = {
   rules: {
     "prettier/prettier": "error"
   },
-  plugins: ["prettier"]
-}
+  plugins: ["prettier"],
+  settings: {
+    react: {
+      version: "detect"
+    }
+  }
+};

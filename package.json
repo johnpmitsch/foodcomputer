@@ -5,7 +5,7 @@
   "scripts": {
     "start": "NODE_ENV=development concurrently --kill-others \"nodemon ./bin/www\" \"cd front-end && npm start\"",
     "format": "find -name '*.js' -not -path './node_modules/*' | xargs prettier --write",
-    "formatAll": "npm run format && cd front-end && npm run format",
+    "formatAll": "npm run format && exit 1 && cd front-end && npm run format",
     "lint": "./node_modules/.bin/eslint .",
     "lintAll": "npm run lint && cd front-end && npm run lint",
     "test": "LOG_LEVEL=error NODE_ENV=test mocha --recursive --exit tests/",

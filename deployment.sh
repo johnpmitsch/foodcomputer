@@ -8,3 +8,4 @@ git fetch --all
 git reset --hard origin/master
 npm install
 $FC_DIR/node_modules/.bin/sequelize db:migrate
+pm2 restart all

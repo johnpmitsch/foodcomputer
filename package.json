@@ -3,11 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "NODE_ENV=development nodemon ./bin/www",
+    "start": "NODE_ENV=development concurrently --kill-others \"nodemon ./bin/www\" \"cd front-end && npm start\"",
     "format": "find -name '*.js' -not -path './node_modules/*' | xargs prettier --write",
+    "formatAll": "npm run format && cd front-end && npm run format",
     "lint": "./node_modules/.bin/eslint .",
+    "lintAll": "npm run lint && cd front-end && npm run lint",
     "test": "LOG_LEVEL=error NODE_ENV=test mocha --recursive --exit tests/",
-    "clean": "npm run format && npm run lint",
+    "testAll": "npm run test && cd front-end && npm run test",
     "resetDatabase": "sequelize db:drop; sequelize db:create && sequelize db:migrate && sequelize db:seed:all --debug",
     "resetTestDatabase": "NODE_ENV=test sequelize db:drop; NODE_ENV=test sequelize db:create && NODE_ENV=test sequelize db:migrate"
   },
@@ -29,6 +31,7 @@
     "winston": "^3.2.1"
   },
   "devDependencies": {
+    "concurrently": "^4.1.0",
     "eslint": "^5.13.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.6.0",

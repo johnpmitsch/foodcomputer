@@ -8,16 +8,17 @@ before_script:
 - npm install -g sequelize-cli
 - sequelize db:create
 - sequelize db:migrate
+- cd front-end && npm install && cd ..
 script:
-- npm run lint
-- npm test
+- npm run lintAll
+- npm run testAll
 branches:
   only:
   - master
 notifications:
   webhooks:
     urls:
-      - http://157.230.177.148:9000/hooks/deploy 
+      - http://foodcomputer.io:9000/hooks/deploy 
     on_success: always # default: always
     on_failure: never # default: always
     on_start: never   # default: never

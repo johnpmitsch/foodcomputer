@@ -8,7 +8,8 @@
     "muicss": "^0.9.41",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
-    "react-scripts": "2.1.4"
+    "react-scripts": "2.1.4",
+    "react-spring": "^8.0.7"
   },
   "scripts": {
     "format": "find -name '*.js' -not -path './node_modules/*' | xargs prettier --write",

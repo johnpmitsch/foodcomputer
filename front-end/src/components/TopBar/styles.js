@@ -5,4 +5,4 @@ export const topBarStyle = {
   textAlign: "center"
 };
 export const rowStyle = { verticalAlign: "middle", padding: "10px" };
-export const h1Style = { "margin-left": "10px", color: "white" };
+export const h1Style = { color: "white" };

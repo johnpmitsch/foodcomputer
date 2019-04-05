@@ -6,7 +6,12 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1>🌱foodcomputer.io</h1>
+          <h1>
+            <span role="img" aria-label="plant emoji">
+              🌱
+            </span>
+            foodcomputer.io
+          </h1>
         </header>
       </div>
     );
